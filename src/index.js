@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import ButtonAdd from "./components/buttonAdd/buttonAdd.tsx";
+
+
+// import BtnAdd from "./components/buttons/buttonAdd";
+// import BtnDel from "./components/buttons/buttonDel";
+import Input from "./components/input"
+import Note from "./components/note";
 
 ReactDOM.render(
   <React.StrictMode>
-      <ButtonAdd />
+      <h1>YOUR NOTES</h1>
+      <Input />
+      <Note />
   </React.StrictMode>,
   document.getElementById('root')
 );
