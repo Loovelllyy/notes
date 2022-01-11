@@ -2,19 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import Links from './components/links';
+import About from './components/about';
+import Main from './components/main'
+import './style.css'
 
-// import BtnAdd from "./components/buttons/buttonAdd";
-// import BtnDel from "./components/buttons/buttonDel";
-import Input from "./components/input"
-import Note from "./components/note";
-
-ReactDOM.render(
-  <React.StrictMode>
-      <h1>YOUR NOTES</h1>
-      <Input />
-      <Note />
-  </React.StrictMode>,
-  document.getElementById('root')
+ReactDOM.render((
+    <React.StrictMode>
+        <Router>
+            <Routes>
+                <Route path='/' element={ <Main /> } />
+                <Route path='/about' element={ <About /> } />
+                <Route path='/links' element={ <Links /> } />
+            </Routes>
+        </Router>
+    </React.StrictMode>),
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
