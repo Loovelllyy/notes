@@ -7,5 +7,10 @@
 }
 
 .notes {
+    display: flex;
+    width: 100%;
+}
 
+.notes > *{
+    margin-right: 30px;
 }

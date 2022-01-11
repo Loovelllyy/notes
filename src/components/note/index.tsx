@@ -7,16 +7,11 @@ class Note extends Component<any, any> {
         return (
             <div className={ styles.wrapper }>
                 <div className={ styles.header }>
-                    <h3>Name</h3>
+                    <h3>{this.props.title}</h3>
                     <BtnDel />
                 </div>
                 <p className={ styles.text }>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto corporis eius eos error sint temporibus.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto corporis eius eos error sint temporibus.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto corporis eius eos error sint temporibus.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto corporis eius eos error sint temporibus.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto corporis eius eos error sint temporibus.
-
+                    {this.props.text}
                 </p>
             </div>
         )
