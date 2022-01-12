@@ -2,7 +2,13 @@ import { Component } from "react";
 import BtnDel from "../buttons/buttonDel";
 import styles from './styles.module.css'
 
-class Note extends Component<any, any> {
+type TProps = {
+    id?: number;
+    title: string;
+    text: string;
+}
+
+class Note extends Component<TProps, any> {
     render() {
         return (
             <div className={ styles.wrapper }>

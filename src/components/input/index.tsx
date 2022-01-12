@@ -6,13 +6,13 @@ class Input extends Component<any, any> {
     render(){
 
         const search = (str: string) => {
-            console.log(5)
+            console.log(str)
         };
 
         return (
             <div className={ styles.wrapper }>
                 <input placeholder='search...' className={ styles.input } />
-                <BtnSearch className={ styles.icon } click={ search } />
+                <BtnSearch className={ styles.icon } onClick={ () => search('5') }/>
                 { this.props.children }
             </div>
         )

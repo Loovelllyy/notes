@@ -4,7 +4,7 @@ import { RiSearchLine } from 'react-icons/ri';
 class BtnSearch extends Component<any, any> {
     render(){
         return (
-            <div className={ this.props.className }  onClick={ this.props.click }>
+            <div className={ this.props.className }>
                 <RiSearchLine />
             </div>
         )

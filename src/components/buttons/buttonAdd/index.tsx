@@ -5,7 +5,7 @@ import { RiAddCircleLine } from 'react-icons/ri'
 class BtnAdd extends React.Component<any, any> {
     render() {
         return (
-            React.createElement('div', { className: styles.btnStyle }, <RiAddCircleLine/>)
+            React.createElement('div', { className: styles.btnStyle, onClick: this.props.onClick }, <RiAddCircleLine/>)
         )
     }
 }

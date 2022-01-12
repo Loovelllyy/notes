@@ -1,11 +1,16 @@
 .wrapper {
-    max-width: 300px;
+    min-width: 300px;
     height: max-content;
     max-height: 200px;
     padding: 10px;
+    margin: 10px;
     box-sizing: border-box;
     border: 1px solid black;
     overflow: hidden;
+}
+
+.wrapper:last-child {
+    margin-right: 0;
 }
 
 .header {

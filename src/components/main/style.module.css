@@ -8,9 +8,7 @@
 
 .notes {
     display: flex;
+    justify-content: center;
     width: 100%;
-}
-
-.notes > *{
-    margin-right: 30px;
+    flex-wrap: wrap;
 }
