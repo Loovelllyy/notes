@@ -3,11 +3,14 @@
     height: max-content;
     max-height: 200px;
     padding: 10px;
-    margin: 10px;
+    /*margin: 10px;*/
     box-sizing: border-box;
-    border: 1px solid black;
+    border: 2px solid #512DA8FF;
+    border-radius: 7%;
     overflow: hidden;
+    background: rgba(255, 255, 255, 0.25);
 }
+
 
 .wrapper:last-child {
     margin-right: 0;
@@ -17,10 +20,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-weight: bold;
 }
 
 /*.text {*/
-/*    white-space: nowrap;*/
-/*    overflow: hidden;*/
-/*    text-overflow: ellipsis;*/
 /*}*/

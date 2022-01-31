@@ -1,0 +1,11 @@
+html {
+    height: 100vh;
+    overflow-y: hidden;
+    background: linear-gradient(246deg, #d5cffd 0%, #cbedfc 100%), no-repeat;
+    background-size: cover;
+    color: rgb(33 91 151);
+}
+
+input, body {
+    font-family: "Microsoft JhengHei UI", sans-serif;
+}
