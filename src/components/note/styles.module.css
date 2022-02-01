@@ -1,9 +1,9 @@
 .wrapper {
     min-width: 300px;
+    max-width: 500px;
     height: max-content;
     max-height: 200px;
     padding: 10px;
-    /*margin: 10px;*/
     box-sizing: border-box;
     border: 2px solid #512DA8FF;
     border-radius: 7%;

@@ -1,12 +1,16 @@
-import { Component } from "react";
+import {Component, MouseEventHandler} from "react";
 import styles from './styles.module.css';
 import { RiDeleteBin7Line } from 'react-icons/ri'
 
-class BtnDel extends Component<any, any> {
+type TProps = {
+    onClick: MouseEventHandler;
+}
+
+class BtnDel extends Component<TProps, any> {
 
     render() {
         return (
-            <div className={styles.btnStyle}>
+            <div className={styles.btnStyle} onClick={ this.props.onClick }>
                 <RiDeleteBin7Line />
             </div>
         )
