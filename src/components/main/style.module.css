@@ -6,8 +6,6 @@
     height: 100vh;
 }
 
-/*TODO fix background undo notes*/
-
 .notes {
     max-height: 70%;
     overflow-y: scroll;

@@ -8,9 +8,6 @@ import style from './style.module.css'
 type TData = {id: number,  title: string, text: string}[];
 type initial_data = {notes: TData};
 
-// let testNote = {id: 0, title: 'Welcome!', text: 'Hello! This is your first note. Let\'s make many new notes with important information for you and our service help you to save it all'};
-
-
 class Main extends Component<unknown, initial_data>{
     private key: number;
     constructor(props: unknown) {
@@ -30,18 +27,21 @@ class Main extends Component<unknown, initial_data>{
         this.updateState();
     }
 
-    // componentDidUpdate() {
-    //     console.log('updates');
-    //     console.log(this.state.notes);
-    // }
-
     getNotes(): TData { // async func
         let notes: TData = [];
         let keys = Object.keys(localStorage);
         for(let key of keys) {
             notes.push(JSON.parse(localStorage.getItem(key) || '{}'))
         }
-
+        notes.sort((a, b) => {
+            if (a.id > b.id) {
+                return 1;
+            }
+            if (a.id < b.id) {
+                return -1;
+            }
+            return 0;
+        })
         return notes;
     }
 
@@ -51,7 +51,7 @@ class Main extends Component<unknown, initial_data>{
 
     createNote(): void{
         console.log('create note');
-        localStorage.setItem(`${this.key}`, JSON.stringify({id: this.key, title: 'sjfnkdjvdf', text: 'smsdjncxd'}));
+        localStorage.setItem(`${this.key}`, JSON.stringify({id: this.key, title: this.key.toString(), text: 'smsdjncxd'}));
         this.updateState();
         this.countId();
     }
