@@ -6,7 +6,7 @@ type TProps = {
     id: number;
     title: string;
     text: string;
-    onDel?: any;
+    onDel: any;
 }
 
 class Note extends Component<TProps, any> {
@@ -23,7 +23,6 @@ class Note extends Component<TProps, any> {
             </div>
         )
     }
-
 }
 
 export default Note;
