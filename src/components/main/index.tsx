@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 import Input from "../input";
-import BtnAdd from "../buttons/buttonAdd";
+import BtnModel from '../buttons/ButtonModel'
 import Note from "../note";
 import Navbar from "../navbar";
 import style from './style.module.css'
 import CreateUpdateNote from '../createUpdateNote'
+import { RiAddCircleLine } from 'react-icons/ri'
 
 type TData = {id: number,  title: string, text: string}[];
 type initial_data = {notes: TData; visible: boolean};
@@ -86,7 +87,7 @@ class Main extends Component<unknown, initial_data>{
                 <div className={ style.wrapper }>
                     <h1>YOUR NOTES</h1>
                     <Navbar/>
-                    <Input children={ <BtnAdd onClick={() => this.addNote() } /> } />
+                    <Input children={ <BtnModel onClick={() => this.addNote() } component={ <RiAddCircleLine/> } action='add'  /> } />
                     <CreateUpdateNote visible={ this.state.visible }  onCancel={ this.cancelCreate } onSave={ this.saveNote } />
                     <div className={ style.notes }>
                         {this.state.notes.map((el) => {

@@ -1,6 +1,7 @@
 import { Component } from "react";
-import BtnDel from "../buttons/buttonDel";
 import styles from './styles.module.css'
+import ButtonModel from "../buttons/ButtonModel";
+import {RiDeleteBin7Line} from "react-icons/ri";
 
 type TProps = {
     id: number;
@@ -15,7 +16,7 @@ class Note extends Component<TProps, any> {
             <div className={ styles.wrapper }>
                 <div className={ styles.header }>
                     <h3>{this.props.title}</h3>
-                    <BtnDel onClick={() => this.props.onDel(this.props.id) } />
+                    <ButtonModel onClick={() => this.props.onDel(this.props.id) } action='delete' component={ <RiDeleteBin7Line /> } />
                 </div>
                 <p className={ styles.text }>
                     {this.props.text}

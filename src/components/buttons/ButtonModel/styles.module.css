@@ -1,5 +1,4 @@
 .btnStyle {
-    background: linear-gradient(to right, #de7f7f 0%, rgb(187, 21, 51) 51%, #de7f7f  100%);
     color: white;
     padding: 5px 20px;
     border-radius: 10%;
@@ -10,7 +9,6 @@
     box-sizing: border-box;
     transition: 0.5s;
     background-size: 200% auto;
-    width: 60px;
 }
 
 .btnStyle:hover {
