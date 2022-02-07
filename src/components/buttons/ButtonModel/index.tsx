@@ -1,9 +1,15 @@
 import styles from './styles.module.css'
 
+// const map = {add: '', cancel: ''};
+// type TMap = typeof map;
+
+
 type TProps = {
     onClick?: () => void;
+    // onClick?: () => any;
     component: JSX.Element;
-    action: 'add' | 'cancel' | 'delete' | 'save';
+    // action: keyof TMap;
+    action:  'add' | 'cancel' | 'delete' | 'save';
     style?: string | undefined;
 };
 
