@@ -7,26 +7,18 @@ import {MdOutlineCancel} from "react-icons/md";
 
 type TProps = {
     visible: boolean;
-    title?: string;
-    text?: string;
+    title: string;
+    text: string;
     onCancel: any;
     onSave: (title: string, text: string) => void;
 }
 
 function CreateUpdateNote({ title, text, visible, onCancel, onSave }: TProps) {
 
-    // const [state1, setState1] = useState<boolean>(true);
-    // const [state2, setState2] = useState('state2');
-    // const [state3, setState3] = state1 ? useState('state3') : [null, () => null];
-    // const [state4, setState4] = useState('state4');
-    // const [state5, setState5] = !state1 ? useState('state5') : [null, () => null];
-    //
-    // console.log(state1, state2, state3, state4, state5);
-    //
-    // useEffect(() => {
-    //     setState1(false);
-    // },[])
-    const [titleValue, setTitleValue] = useState('');
+    const [titleValue, setTitleValue] = useState(title);
+    // @ts-ignore
+    // setTitleValue(title);
+    console.log('title value: ', titleValue);
 
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -48,29 +40,28 @@ function CreateUpdateNote({ title, text, visible, onCancel, onSave }: TProps) {
         }, [visible]);
 
     if (visible) {
-        if (!(title || text)) { // create
-
+        // if (!(title || text)) { // create
             return(
                 <div className={ style.bg }>
                     <div className={style.wrapper}>
                         <input className={ `${style.inputStyle} ${style.title}` } type="text" placeholder="Title" value={ titleValue } onChange={ handle }/>
                         <ButtonModel style={ style.btnCancel } onClick={ onCancel } action='cancel' component={ <MdOutlineCancel/> } />
                         <div>
-                            <textarea className={ `${style.inputStyle} ${style.text}` } placeholder="Write something..." ref={ textareaRef }/>
+                            <textarea className={ `${style.inputStyle} ${style.text}` } placeholder="Write something..." ref={ textareaRef } />
                         </div>
                         <ButtonModel style={ style.btnSave } component={ <BsSave/> } action='save' onClick={ clickHandle }/>
                     </div>
                 </div>
             )
-        }
-        return ( // update
-            <div className={style.wrapper}>
-                <input type="text" value={ title }/>
-                <input type="text" value={ text }/>
-                {/* TODO add ButtonModel to down */}
-                {/*<ButtonSave/>*/}
-            </div>
-        )
+        // }
+        // return ( // update
+        //     <div className={style.wrapper}>
+        //         <input type="text" value={ title }/>
+        //         <input type="text" value={ text }/>
+        //         {/* TODO add ButtonModel to down */}
+        //         {/*<ButtonSave/>*/}
+        //     </div>
+        // )
     } else {
         return null
     }

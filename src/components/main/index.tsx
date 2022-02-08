@@ -8,18 +8,21 @@ import CreateUpdateNote from '../createUpdateNote'
 import { RiAddCircleLine } from 'react-icons/ri'
 
 type TData = {id: number,  title: string, text: string}[];
-type initial_data = {notes: TData; visible: boolean};
+type initial_data = {notes: TData; visible: boolean, title: string, text: string};
 
 class Main extends Component<unknown, initial_data>{
     private key: number;
     constructor(props: unknown) {
         super(props);
         this.state = {'notes': [ {id: 0, title: 'Welcome!', text: 'Hello! This is your first note. Let\'s make many new notes with important information for you and our service help you to save it all'}],
-                        visible: false};
+                        visible: false,
+                        title: '',
+                        text: ''};
         this.key = 1;
         this.deleteNote = this.deleteNote.bind(this);
         this.cancelCreate = this.cancelCreate.bind(this);
         this.saveNote = this.saveNote.bind(this);
+        this.changeNote = this.changeNote.bind(this);
     }
 
     updateState(): void {
@@ -34,7 +37,7 @@ class Main extends Component<unknown, initial_data>{
 
     getNotes() { // async func
         return new Promise<TData>((resolve => {
-            const getnotes = () => {
+            const getNotes = () => {
                 let notes: TData = [];
                 let keys = Object.keys(localStorage);
                 for(let key of keys) {
@@ -51,7 +54,7 @@ class Main extends Component<unknown, initial_data>{
                 })
                 return notes;
             }
-            setTimeout(() => resolve(getnotes()), 100)
+            setTimeout(() => resolve(getNotes()), 100)
         }))
     }
 
@@ -81,22 +84,27 @@ class Main extends Component<unknown, initial_data>{
         this.updateState();
     }
 
-    render() {
+    changeNote(id: number, title: string, text: string) {
+        console.log('clicked: ', id, title, text);
+        this.setState({title: title})
+        this.setState({visible: true})
+        console.log('states: ', this.state.title)
+    }
 
+    render() {
         return (
                 <div className={ style.wrapper }>
                     <h1>YOUR NOTES</h1>
                     <Navbar/>
                     <Input children={ <BtnModel onClick={() => this.addNote() } component={ <RiAddCircleLine/> } action='add'  /> } />
-                    <CreateUpdateNote visible={ this.state.visible }  onCancel={ this.cancelCreate } onSave={ this.saveNote } />
+                    <CreateUpdateNote visible={ this.state.visible }  onCancel={ this.cancelCreate } onSave={ this.saveNote } title={ this.state.title } text={ this.state.text } />
                     <div className={ style.notes }>
                         {this.state.notes.map((el) => {
                             return <Note key={el.id} id={el.id}
                                          title={el.title} text={el.text}
-                                         onDel={ this.deleteNote } />
+                                         onDel={ this.deleteNote } onClick={ this.changeNote } />
                         })}
                     </div>
-
                 </div>
         )
     }
