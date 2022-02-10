@@ -15,24 +15,28 @@ type TProps = {
 
 function CreateUpdateNote({ title, text, onCancel, onSave, id}: TProps) {
 
-    const [titleValue, setTitleValue] = useState(title);
-    const [textValue, setTextValue] = useState(text);
+    function useUpdateValues(title: string, text: string, id: number){
+        const [titleValue, setTitleValue] = useState(title);
+        const [textValue, setTextValue] = useState(text);
 
-    console.log('id value: ', id);
+        const titleHandle = useCallback((ev: React.ChangeEvent<HTMLInputElement>) => {
+            setTitleValue(ev.target.value);
+        }, [setTitleValue]);
 
-    const titleHandle = useCallback((ev: React.ChangeEvent<HTMLInputElement>) => {
-        setTitleValue(ev.target.value);
-    }, [setTitleValue]);
+        const textHandle = useCallback((ev: React.ChangeEvent<HTMLTextAreaElement>) => {
+            setTextValue(ev.target.value);
+        }, [setTextValue]);
 
-    const textHandle = useCallback((ev: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setTextValue(ev.target.value);
-    }, [setTextValue]);
+        const clickHandle = useCallback(() => {
+            onSave(titleValue, textValue, id);
+        }, [titleValue, textValue, onSave]);
 
-    const clickHandle = useCallback(() => {
-      onSave(titleValue, textValue, id);
-    }, [titleValue, textValue, onSave]);
+        return [titleValue, textValue, titleHandle, textHandle, clickHandle] as [string, string, (ev: React.ChangeEvent<HTMLInputElement>) => void, (ev: React.ChangeEvent<HTMLTextAreaElement>) => void, () => void]
+    }
 
-            return(
+    const [titleValue, textValue, titleHandle, textHandle, clickHandle] = useUpdateValues(title, text, id);
+
+    return(
                 <div className={ style.bg }>
                     <div className={style.wrapper}>
                         <input className={ `${style.inputStyle} ${style.title}` } type="text" placeholder="Title" value={ titleValue } onChange={ titleHandle }/>
