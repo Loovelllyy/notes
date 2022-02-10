@@ -2,21 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Links from './components/links';
-import About from './components/about';
-import Main from './components/main'
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Links from './pages/links';
+import About from './pages/about';
 import './style.css'
+import Main from "./pages/main";
 
 ReactDOM.render((
     <React.StrictMode>
-        <Router>
+        <BrowserRouter>
             <Routes>
                 <Route path='/' element={ <Main /> } />
                 <Route path='/about' element={ <About /> } />
                 <Route path='/links' element={ <Links /> } />
             </Routes>
-        </Router>
+        </BrowserRouter>
     </React.StrictMode>),
   document.getElementById('root'),
 );

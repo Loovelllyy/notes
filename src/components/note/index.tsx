@@ -1,21 +1,23 @@
-import { Component } from "react";
-import BtnDel from "../buttons/buttonDel";
-import styles from './styles.module.css'
+import React, { Component } from "react";
+import styles from './styles.module.css';
+import ButtonModel from "../buttons/ButtonModel";
+import {RiDeleteBin7Line} from "react-icons/ri";
 
 type TProps = {
     id: number;
     title: string;
     text: string;
-    onDel?: any;
+    onDel: (ev: React.MouseEvent<HTMLElement>, id: number) => void;
+    onClick: (ev: React.MouseEvent<HTMLDivElement>, id: number, title: string, text: string) => void;
 }
 
 class Note extends Component<TProps, any> {
     render() {
         return (
-            <div className={ styles.wrapper }>
+            <div className={ styles.wrapper } onClick={ (ev) => this.props.onClick(ev, this.props.id, this.props.title, this.props.text) } >
                 <div className={ styles.header }>
                     <h3>{this.props.title}</h3>
-                    <BtnDel onClick={() => this.props.onDel(this.props.id) } />
+                    <ButtonModel onClick={(e) => this.props.onDel(e, this.props.id) } action='delete' component={ <RiDeleteBin7Line /> } />
                 </div>
                 <p className={ styles.text }>
                     {this.props.text}
@@ -23,7 +25,6 @@ class Note extends Component<TProps, any> {
             </div>
         )
     }
-
 }
 
 export default Note;
