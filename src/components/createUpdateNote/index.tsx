@@ -1,6 +1,7 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React from "react";
 import style from './style.module.css'
 import ButtonModel from "../buttons/ButtonModel";
+import useUpdateValues from "../../myHooks/useUpdateValues";
 
 import {BsSave} from 'react-icons/bs'
 import {MdOutlineCancel} from "react-icons/md";
@@ -13,28 +14,9 @@ type TProps = {
     onSave: (title: string, text: string, id?: number) => void;
 }
 
-function CreateUpdateNote({ title, text, onCancel, onSave, id}: TProps) {
+function CreateUpdateNote({ title, text, onCancel, id, onSave}: TProps) {
 
-    function useUpdateValues(title: string, text: string, id: number){
-        const [titleValue, setTitleValue] = useState(title);
-        const [textValue, setTextValue] = useState(text);
-
-        const titleHandle = useCallback((ev: React.ChangeEvent<HTMLInputElement>) => {
-            setTitleValue(ev.target.value);
-        }, [setTitleValue]);
-
-        const textHandle = useCallback((ev: React.ChangeEvent<HTMLTextAreaElement>) => {
-            setTextValue(ev.target.value);
-        }, [setTextValue]);
-
-        const clickHandle = useCallback(() => {
-            onSave(titleValue, textValue, id);
-        }, [titleValue, textValue, onSave]);
-
-        return [titleValue, textValue, titleHandle, textHandle, clickHandle] as [string, string, (ev: React.ChangeEvent<HTMLInputElement>) => void, (ev: React.ChangeEvent<HTMLTextAreaElement>) => void, () => void]
-    }
-
-    const [titleValue, textValue, titleHandle, textHandle, clickHandle] = useUpdateValues(title, text, id);
+    const [titleValue, textValue, titleHandle, textHandle, clickHandle] = useUpdateValues(title, text, id, onSave);
 
     return(
                 <div className={ style.bg }>

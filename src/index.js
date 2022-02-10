@@ -6,13 +6,13 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Links from './pages/links';
 import About from './pages/about';
 import './style.css'
-import MainPage from "./pages/main";
+import Main from "./pages/main";
 
 ReactDOM.render((
     <React.StrictMode>
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={ <MainPage /> } />
+                <Route path='/' element={ <Main /> } />
                 <Route path='/about' element={ <About /> } />
                 <Route path='/links' element={ <Links /> } />
             </Routes>
