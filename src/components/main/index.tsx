@@ -8,7 +8,7 @@ import CreateUpdateNote from '../createUpdateNote'
 import { RiAddCircleLine } from 'react-icons/ri'
 
 type TData = {id: number,  title: string, text: string}[];
-type initial_data = {notes: TData; visible: boolean, title: string, text: string};
+type initial_data = {notes: TData; visible: boolean, title: string, text: string, currentID: number};
 
 class Main extends Component<unknown, initial_data>{
     private key: number;
@@ -17,7 +17,8 @@ class Main extends Component<unknown, initial_data>{
         this.state = {'notes': [ {id: 0, title: 'Welcome!', text: 'Hello! This is your first note. Let\'s make many new notes with important information for you and our service help you to save it all'}],
                         visible: false,
                         title: '',
-                        text: ''};
+                        text: '',
+                        currentID: 0};
         this.key = 1;
         this.deleteNote = this.deleteNote.bind(this);
         this.cancelCreate = this.cancelCreate.bind(this);
@@ -35,7 +36,7 @@ class Main extends Component<unknown, initial_data>{
         this.updateState();
     }
 
-    getNotes() { // async func
+    getNotes() {
         return new Promise<TData>((resolve => {
             const getNotes = () => {
                 let notes: TData = [];
@@ -64,40 +65,51 @@ class Main extends Component<unknown, initial_data>{
 
     addNote(): void{
         console.log('create note');
-        this.setState({visible: true})
+        this.setState({visible: true});
         this.countId();
     }
 
-    saveNote(title: string, text: string): void{
-        localStorage.setItem(`${this.key}`, JSON.stringify({id: this.key, title: title, text: text}));
+    saveNote(title: string, text: string, id?: number): void{
+        console.log('id:', id)
+        if (id) {
+            localStorage.setItem(`${id}`, JSON.stringify({id, title, text}));
+            this.cancelCreate();
+            this.updateState();
+            this.setState({currentID: 0})
+            return;
+        }
+        localStorage.setItem(`${this.key}`, JSON.stringify({id: this.key, title, text}));
         this.cancelCreate();
         this.updateState();
+        this.setState({currentID: 0})
     }
 
     cancelCreate(): void{
-        this.setState({visible: false});
+        this.setState({visible: false, title: '', text: '', currentID: 0});
     }
 
-    deleteNote(id: number): void{
+    deleteNote(ev: React.MouseEvent<HTMLElement>, id: number): void{
+        ev.stopPropagation();
         console.log('onDel ', id);
         localStorage.removeItem(id.toString())
         this.updateState();
     }
 
-    changeNote(id: number, title: string, text: string) {
+    changeNote(ev: React.MouseEvent<HTMLDivElement>, id: number, title: string, text: string) {
         console.log('clicked: ', id, title, text);
-        this.setState({title: title})
-        this.setState({visible: true})
-        console.log('states: ', this.state.title)
+        this.setState({visible: true, title, text, currentID: id});
     }
 
     render() {
+        console.log(this.key)
         return (
                 <div className={ style.wrapper }>
                     <h1>YOUR NOTES</h1>
                     <Navbar/>
                     <Input children={ <BtnModel onClick={() => this.addNote() } component={ <RiAddCircleLine/> } action='add'  /> } />
-                    <CreateUpdateNote visible={ this.state.visible }  onCancel={ this.cancelCreate } onSave={ this.saveNote } title={ this.state.title } text={ this.state.text } />
+                    {this.state.visible && <CreateUpdateNote onCancel={this.cancelCreate} onSave={this.saveNote}
+                                       title={this.state.title} text={this.state.text} id={this.state.currentID}/>
+                    }
                     <div className={ style.notes }>
                         {this.state.notes.map((el) => {
                             return <Note key={el.id} id={el.id}

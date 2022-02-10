@@ -1,11 +1,12 @@
 import styles from './styles.module.css'
+import React from "react";
 
 // const map = {add: '', cancel: ''};
 // type TMap = typeof map;
 
 
 type TProps = {
-    onClick?: () => void;
+    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
     // onClick?: () => any;
     component: JSX.Element;
     // action: keyof TMap;

@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Links from './components/links';
-import About from './components/about';
-import Main from './components/main'
+import Links from './pages/links';
+import About from './pages/about';
 import './style.css'
+import MainPage from "./pages/main";
 
 ReactDOM.render((
     <React.StrictMode>
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={ <Main /> } />
+                <Route path='/' element={ <MainPage /> } />
                 <Route path='/about' element={ <About /> } />
                 <Route path='/links' element={ <Links /> } />
             </Routes>

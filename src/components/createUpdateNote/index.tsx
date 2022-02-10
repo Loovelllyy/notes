@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import style from './style.module.css'
 import ButtonModel from "../buttons/ButtonModel";
 
@@ -6,67 +6,44 @@ import {BsSave} from 'react-icons/bs'
 import {MdOutlineCancel} from "react-icons/md";
 
 type TProps = {
-    visible: boolean;
     title: string;
     text: string;
+    id: number;
     onCancel: any;
-    onSave: (title: string, text: string) => void;
+    onSave: (title: string, text: string, id?: number) => void;
 }
 
-function CreateUpdateNote({ title, text, visible, onCancel, onSave }: TProps) {
+function CreateUpdateNote({ title, text, onCancel, onSave, id}: TProps) {
 
     const [titleValue, setTitleValue] = useState(title);
-    // @ts-ignore
-    // setTitleValue(title);
-    console.log('title value: ', titleValue);
+    const [textValue, setTextValue] = useState(text);
 
-    const textareaRef = useRef<HTMLTextAreaElement>(null);
+    console.log('id value: ', id);
 
-    const handle = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setTitleValue(event.target.value);
-    }
+    const titleHandle = useCallback((ev: React.ChangeEvent<HTMLInputElement>) => {
+        setTitleValue(ev.target.value);
+    }, [setTitleValue]);
+
+    const textHandle = useCallback((ev: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setTextValue(ev.target.value);
+    }, [setTextValue]);
 
     const clickHandle = useCallback(() => {
-      const text = textareaRef.current?.value || '';
-      onSave(titleValue, text);
-    }, [titleValue, onSave]);
+      onSave(titleValue, textValue, id);
+    }, [titleValue, textValue, onSave]);
 
-    useEffect(() => {
-        if (visible) return;
-        if (textareaRef.current) {
-            textareaRef.current.value = '';
-        }
-        setTitleValue('');
-        }, [visible]);
-
-    if (visible) {
-        // if (!(title || text)) { // create
             return(
                 <div className={ style.bg }>
                     <div className={style.wrapper}>
-                        <input className={ `${style.inputStyle} ${style.title}` } type="text" placeholder="Title" value={ titleValue } onChange={ handle }/>
+                        <input className={ `${style.inputStyle} ${style.title}` } type="text" placeholder="Title" value={ titleValue } onChange={ titleHandle }/>
                         <ButtonModel style={ style.btnCancel } onClick={ onCancel } action='cancel' component={ <MdOutlineCancel/> } />
                         <div>
-                            <textarea className={ `${style.inputStyle} ${style.text}` } placeholder="Write something..." ref={ textareaRef } />
+                            <textarea className={ `${style.inputStyle} ${style.text}` } placeholder="Write something..." value={ textValue } onChange={ textHandle } />
                         </div>
                         <ButtonModel style={ style.btnSave } component={ <BsSave/> } action='save' onClick={ clickHandle }/>
                     </div>
                 </div>
             )
-        // }
-        // return ( // update
-        //     <div className={style.wrapper}>
-        //         <input type="text" value={ title }/>
-        //         <input type="text" value={ text }/>
-        //         {/* TODO add ButtonModel to down */}
-        //         {/*<ButtonSave/>*/}
-        //     </div>
-        // )
-    } else {
-        return null
-    }
-
-
 }
 
 export default CreateUpdateNote;
