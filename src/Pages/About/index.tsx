@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-class About extends Component<any, any> {
+class About extends Component {
     render(){
         return (
             <div>

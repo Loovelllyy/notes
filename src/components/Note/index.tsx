@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import styles from './styles.module.css';
-import ButtonModel from "../buttons/ButtonModel";
+import ButtonModel from "../Buttons/ButtonModel";
 import {RiDeleteBin7Line} from "react-icons/ri";
 
-type TProps = {
+interface IProps {
     id: number;
     title: string;
     text: string;
@@ -11,7 +11,7 @@ type TProps = {
     onClick: (ev: React.MouseEvent<HTMLDivElement>, id: number, title: string, text: string) => void;
 }
 
-class Note extends Component<TProps, any> {
+class Note extends Component<IProps> {
     render() {
         return (
             <div className={ styles.wrapper } onClick={ (ev) => this.props.onClick(ev, this.props.id, this.props.title, this.props.text) } >

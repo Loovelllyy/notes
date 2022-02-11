@@ -1,14 +1,14 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import styles from "./styles.module.css";
-import Note from '../note'
+import Note from '../Note'
 
-type TProps = {
+interface IProps {
     changeNote: (ev: React.MouseEvent<HTMLDivElement>, id: number, title: string, text: string) => void;
 }
 type TData = {id: number,  title: string, text: string}[];
 
 
-function NoteList({ changeNote }: TProps) {
+function NoteList({ changeNote }: IProps) {
 
     const [noteState, noteSetState] = useState([] as TData);
 

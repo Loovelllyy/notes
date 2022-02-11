@@ -1,20 +1,19 @@
 import styles from './styles.module.css'
 import React from "react";
 
-// const map = {add: '', cancel: ''};
+// const map = {add: { backgroundImage: 'var(--bgAddBtn)' }, cancel: {}...};
 // type TMap = typeof map;
 
 
-type TProps = {
-    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
-    // onClick?: () => any;
-    component: JSX.Element;
+interface IProps {
     // action: keyof TMap;
+    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+    component: JSX.Element;
     action:  'add' | 'cancel' | 'delete' | 'save';
     style?: string | undefined;
-};
+}
 
-function ButtonModel({ onClick, component, action, style }: TProps) {
+function ButtonModel({ onClick, component, action, style }: IProps) {
     let styleItem: {backgroundImage: string, width?: string};
     switch (action) {
         case 'add': styleItem = { backgroundImage: 'var(--bgAddBtn)' };

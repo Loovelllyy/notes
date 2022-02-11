@@ -1,21 +1,21 @@
-import React, {useCallback, useState} from "react";
+import React, { useState } from "react";
 
 function useUpdateValues(title: string, text: string, id: number, onSave: (title: string, text: string, id?: number) => void){
 
     const [titleValue, setTitleValue] = useState(title);
     const [textValue, setTextValue] = useState(text);
 
-    const titleHandle = useCallback((ev: React.ChangeEvent<HTMLInputElement>) => {
+    const titleHandle = ((ev: React.ChangeEvent<HTMLInputElement>) => {
         setTitleValue(ev.target.value);
-    }, [setTitleValue]);
+    });
 
-    const textHandle = useCallback((ev: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const textHandle = ((ev: React.ChangeEvent<HTMLTextAreaElement>) => {
         setTextValue(ev.target.value);
-    }, [setTextValue]);
+    });
 
-    const clickHandle = useCallback(() => {
+    const clickHandle = (() => {
         onSave(titleValue, textValue, id);
-    }, [titleValue, textValue, id, onSave]);
+    });
 
     return [titleValue, textValue, titleHandle, textHandle, clickHandle] as [string, string, (ev: React.ChangeEvent<HTMLInputElement>) => void, (ev: React.ChangeEvent<HTMLTextAreaElement>) => void, () => void]
 }

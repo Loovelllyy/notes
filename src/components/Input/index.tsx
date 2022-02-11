@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import BtnSearch from "../buttons/buttonSearch/btnSearch";
+import ButtonSearch from "../Buttons/ButtonSearch";
 import styles from './style.module.css';
 
-class Input extends Component<any, any> {
+class Input extends Component{
     render(){
 
         const search = (str: string) => {
@@ -12,7 +12,7 @@ class Input extends Component<any, any> {
         return (
             <div className={ styles.wrapper }>
                 <input placeholder='search...' className={ styles.input } />
-                <BtnSearch className={ styles.icon } onClick={ () => search('5') }/>
+                <ButtonSearch className={ styles.icon } onClick={ () => search('5') }/>
                 { this.props.children }
             </div>
         )

@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-class Links extends Component<any, any> {
+class Links extends Component{
     render(){
         return (
             <div>

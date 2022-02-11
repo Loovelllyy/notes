@@ -1,22 +1,19 @@
 import React, {Component} from "react";
-import Input from "../../components/input";
-import BtnModel from '../../components/buttons/ButtonModel'
-import Navbar from "../../components/navbar";
+import Input from "../../components/Input";
+import BtnModel from '../../components/Buttons/ButtonModel'
+import Navbar from "../../components/Navbar";
 import style from './style.module.css'
-import CreateUpdateNote from '../../components/createUpdateNote'
+import CreateUpdateNote from '../../components/CreateUpdateNote'
 import { RiAddCircleLine } from 'react-icons/ri'
 import NoteList from "../../components/NoteList";
 
-type TProps = {visible: boolean, title: string, text: string, currentID: number};
+interface IState {visible: boolean, title: string, text: string, currentID: number}
 
-class Main extends Component<unknown, TProps>{
+class Main extends Component<{}, IState>{
     private key: number;
-    constructor(props: unknown) {
+    constructor(props: {}) {
         super(props);
-        this.state = {  visible: false,
-                        title: '',
-                        text: '',
-                        currentID: 0};
+        this.state = {  visible: false, title: '', text: '', currentID: 0};
         this.key = 0;
         this.cancelCreate = this.cancelCreate.bind(this);
         this.saveNote = this.saveNote.bind(this);
@@ -24,7 +21,7 @@ class Main extends Component<unknown, TProps>{
     }
 
     componentDidMount() {
-        localStorage.setItem('0', JSON.stringify({id: 0, title: 'Welcome!', text: 'Hello! This is your first note. Let\'s make many new notes with important information for you and our service help you to save it all'}));
+        localStorage.setItem('0', JSON.stringify({id: 0, title: 'Welcome!', text: 'Hello! This is your first Note. Let\'s make many new notes with important information for you and our service help you to save it all'}));
     }
 
     countId():void {

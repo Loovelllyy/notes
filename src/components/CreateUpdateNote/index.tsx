@@ -1,12 +1,12 @@
 import React from "react";
 import style from './style.module.css'
-import ButtonModel from "../buttons/ButtonModel";
-import useUpdateValues from "../../myHooks/useUpdateValues";
+import ButtonModel from "../Buttons/ButtonModel";
+import useUpdateValues from "../../MyHooks/useUpdateValues";
 
 import {BsSave} from 'react-icons/bs'
 import {MdOutlineCancel} from "react-icons/md";
 
-type TProps = {
+interface IProps {
     title: string;
     text: string;
     id: number;
@@ -14,7 +14,7 @@ type TProps = {
     onSave: (title: string, text: string, id?: number) => void;
 }
 
-function CreateUpdateNote({ title, text, onCancel, id, onSave}: TProps) {
+function CreateUpdateNote({ title, text, onCancel, id, onSave}: IProps) {
 
     const [titleValue, textValue, titleHandle, textHandle, clickHandle] = useUpdateValues(title, text, id, onSave);
 

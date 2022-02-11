@@ -1,7 +1,12 @@
 import { Component } from "react";
 import { RiSearchLine } from 'react-icons/ri';
 
-class BtnSearch extends Component<any, any> {
+interface IProps {
+    className: string;
+    onClick: () => void;
+}
+
+class Index extends Component<IProps> {
     render(){
         return (
             <div className={ this.props.className }>
@@ -11,4 +16,4 @@ class BtnSearch extends Component<any, any> {
     }
 }
 
-export default BtnSearch;
+export default Index;

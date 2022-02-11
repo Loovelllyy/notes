@@ -3,7 +3,7 @@ import { GoHome, GoInfo, GoLink } from 'react-icons/go'
 import { Link } from 'react-router-dom';
 import style from './style.module.css';
 
-class Navbar extends Component<unknown, unknown>{
+class Navbar extends Component{
     render() {
         return (
             <div className={ style.navBar }>

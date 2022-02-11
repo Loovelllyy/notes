@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Links from './pages/links';
-import About from './pages/about';
+import Links from './Pages/Links';
+import About from './Pages/About';
 import './style.css'
-import Main from "./pages/main";
+import Main from "./Pages/Main";
 
 ReactDOM.render((
     <React.StrictMode>

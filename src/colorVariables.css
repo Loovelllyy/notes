@@ -4,7 +4,7 @@
     --bgPage: linear-gradient(246deg, #d5cffd 0%, #cbedfc 100%);
     --bgScroll: linear-gradient(to top, #f0cffd 0%, #cbf3fc 100%);
 
-    /* Background for buttons */
+    /* Background for Buttons */
 
     --bgAddBtn: linear-gradient(to right, #7276e3 0%, #85c6d2 51%, #7276e3  100%);
     --bgCancelBtn: linear-gradient(to right, #d7d7d7 0%, rgb(231 124 153) 51%, #d7d7d7  100%);
