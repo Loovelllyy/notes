@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function useUpdateValues(title: string, text: string, id: number, onSave: (title: string, text: string, id?: number) => void){
+function useUpdateValues(title: string, text: string, id: number, onSave: (title: string, text: string, id?: number) => void) {
 
     const [titleValue, setTitleValue] = useState(title);
     const [textValue, setTextValue] = useState(text);

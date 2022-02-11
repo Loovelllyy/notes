@@ -1,8 +1,8 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {DetailedHTMLProps, HTMLAttributes, useCallback, useEffect, useState} from 'react';
 import styles from "./styles.module.css";
 import Note from '../Note'
 
-interface IProps {
+interface IProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>{
     changeNote: (ev: React.MouseEvent<HTMLDivElement>, id: number, title: string, text: string) => void;
 }
 type TData = {id: number,  title: string, text: string}[];

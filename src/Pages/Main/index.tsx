@@ -62,7 +62,7 @@ class Main extends Component<{}, IState>{
                     {this.state.visible && <CreateUpdateNote onCancel={this.cancelCreate} onSave={this.saveNote}
                                        title={this.state.title} text={this.state.text} id={this.state.currentID}/>
                     }
-                    <NoteList changeNote={ this.changeNote } />
+                    <NoteList  changeNote={ this.changeNote } />
                 </div>
         )
     }
