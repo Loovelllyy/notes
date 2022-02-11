@@ -1,11 +1,11 @@
 import React, {Component} from "react";
-import Input from "../../components/Input";
-import BtnModel from '../../components/Buttons/ButtonModel'
-import Navbar from "../../components/Navbar";
+import Input from "../../Components/Input";
+import BtnModel from '../../Components/Buttons/ButtonModel'
+import Navbar from "../../Components/Navbar";
 import style from './style.module.css'
-import CreateUpdateNote from '../../components/CreateUpdateNote'
+import CreateUpdateNote from '../../Components/CreateUpdateNote'
 import { RiAddCircleLine } from 'react-icons/ri'
-import NoteList from "../../components/NoteList";
+import NoteList from "../../Components/NoteList";
 
 interface IState {visible: boolean, title: string, text: string, currentID: number}
 
