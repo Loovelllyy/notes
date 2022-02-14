@@ -14,6 +14,7 @@ function useUpdateValues(title: string, text: string, id: number, onSave: (title
     });
 
     const clickHandle = (() => {
+        console.log(id)
         onSave(titleValue, textValue, id);
     });
 
