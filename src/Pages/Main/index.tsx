@@ -1,22 +1,21 @@
 import React, {Component} from "react";
-import Input from "../../Components/Input";
-import BtnModel from '../../Components/Buttons/ButtonModel'
-import Navbar from "../../Components/Navbar";
 import style from './style.module.css'
+import Navbar from "../../Components/Navbar";
+import Input from "../../Components/Input";
 import CreateUpdateNote from '../../Components/CreateUpdateNote'
-import { RiAddCircleLine } from 'react-icons/ri'
 import NoteList from "../../Components/NoteList";
 
-interface IState {visible: boolean, title: string, text: string, currentID: number}
+interface IState {visible: boolean, title: string, text: string, currentID: number, searchingId: number[]}
 
 class Main extends Component<{}, IState>{
     private key: number;
     constructor(props: {}) {
         super(props);
-        this.state = {  visible: false, title: '', text: '', currentID: 0};
-        this.key = 0;
+        this.state = {  visible: false, title: '', text: '', currentID: 0, searchingId: []};
+        this.key = localStorage.length;
         this.cancelCreate = this.cancelCreate.bind(this);
         this.saveNote = this.saveNote.bind(this);
+        this.addNote = this.addNote.bind(this)
         this.changeNote = this.changeNote.bind(this);
     }
 
@@ -53,16 +52,26 @@ class Main extends Component<{}, IState>{
         this.setState({visible: true, title, text, currentID: id});
     }
 
+    searchNote = (string: string): void => {
+        console.log('search')
+        const keys = Object.keys(localStorage);
+        const searchNotes = [];
+        for(let key of keys) {
+            let currentElm: {id: number, title: string, text:string} = JSON.parse(localStorage.getItem(key) || '');
+            if ((currentElm?.title.indexOf(string) === -1) && (currentElm?.text.indexOf(string) === -1)) {
+                console.log('if block:', this.state.searchingId);
+            } else searchNotes.push(currentElm.id);
+        }
+        this.setState({searchingId: searchNotes})
+        console.log(this.state.searchingId);
+    }
+
     render() {
         return (
                 <div className={ style.wrapper }>
                     <h1>YOUR NOTES</h1>
                     <Navbar/>
-                    <Input children={ <BtnModel onClick={() => this.addNote() } component={ <RiAddCircleLine/> } action='add'  /> } />
-                    {this.state.visible && <CreateUpdateNote onCancel={this.cancelCreate} onSave={this.saveNote}
-                                       title={this.state.title} text={this.state.text} id={this.state.currentID}/>
-                    }
-                    <NoteList  changeNote={ this.changeNote } />
+                    <NoteList changeNote={ this.changeNote } />
                 </div>
         )
     }

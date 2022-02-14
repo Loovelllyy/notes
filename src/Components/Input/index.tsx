@@ -1,22 +1,33 @@
-import React, { Component } from "react";
-import ButtonSearch from "../Buttons/ButtonSearch";
+import React, { useState } from "react";
 import styles from './style.module.css';
+import ButtonSearch from "../Buttons/ButtonSearch";
+import BtnModel from "../Buttons/ButtonModel";
+import { RiAddCircleLine } from 'react-icons/ri';
 
-class Input extends Component{
-    render(){
+//lick={() => this.addNote() } component={ <RiAddCircleLine/> } action='add'
 
-        const search = (str: string) => {
-            console.log(str)
-        };
+interface IProps { onSearch: (string: string) => void, addNote: () => void}
+// interface IState {inputStr: string}
 
-        return (
+const Input = ({ onSearch, addNote }: IProps) => {
+
+    const [inputStr, setInputStr] = useState('');
+
+    const handle = (ev: React.ChangeEvent<HTMLInputElement>) => {
+        setInputStr(ev.target.value);
+    }
+
+    const onClick = () => {
+        onSearch(inputStr);
+    };
+
+    return (
             <div className={ styles.wrapper }>
-                <input placeholder='search...' className={ styles.input } />
-                <ButtonSearch className={ styles.icon } onClick={ () => search('5') }/>
-                { this.props.children }
+                <input placeholder='search...' className={ styles.input } onChange={ (ev) => handle(ev) } />
+                <ButtonSearch className={ styles.icon }  onClick={ onClick }/>
+                <BtnModel onClick={ addNote } component={ <RiAddCircleLine/> } action='add'  />
             </div>
         )
     }
-}
 
 export default Input;

@@ -1,6 +1,8 @@
 import React, {DetailedHTMLProps, HTMLAttributes, useCallback, useEffect, useState} from 'react';
 import styles from "./styles.module.css";
 import Note from '../Note'
+import Input from "../Input";
+import CreateUpdateNote from "../CreateUpdateNote";
 
 interface IProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>{
     changeNote: (ev: React.MouseEvent<HTMLDivElement>, id: number, title: string, text: string) => void;
@@ -26,13 +28,7 @@ function NoteList({ changeNote }: IProps) {
                     notes.push(JSON.parse(localStorage.getItem(key) || '{}'))
                 }
                 notes.sort((a, b) => {
-                    if (a.id > b.id) {
-                        return 1;
-                    }
-                    if (a.id < b.id) {
-                        return -1;
-                    }
-                    return 0;
+                    return a.id - b.id;
                 })
                 return notes;
             }
@@ -45,13 +41,22 @@ function NoteList({ changeNote }: IProps) {
     }, [getNotes, noteState])
 
     return (
-        <div className={ styles.notes }>
-            {noteState.map((el) => {
-                return <Note key={el.id} id={el.id}
-                             title={el.title} text={el.text}
-                             onDel={ deleteNote } onClick={ changeNote } />
-            })}
-        </div>
+        <>
+            <Input onSearch={ this.searchNote } addNote={ this.addNote } />
+
+            {this.state.visible && <CreateUpdateNote onCancel={this.cancelCreate} onSave={this.saveNote}
+                                                     title={this.state.title} text={this.state.text} id={this.state.currentID}/>
+            }
+
+            <div className={ styles.notes }>
+                {noteState.map((el) => {
+                    return <Note key={el.id} id={el.id}
+                                 title={el.title} text={el.text}
+                                 onDel={ deleteNote } onClick={ changeNote } />
+                })}
+            </div>
+        </>
+
     )
 }
 
