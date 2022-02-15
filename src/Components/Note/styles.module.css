@@ -6,7 +6,7 @@
     padding: 10px;
     box-sizing: border-box;
     border: 2px solid #512DA8FF;
-    border-radius: 7%;
+    border-radius: 10px;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.25);
 }

@@ -1,8 +1,9 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from "./styles.module.css";
 import Note from '../Note'
 import Input from "../Input";
 import CreateUpdateNote from "../CreateUpdateNote";
+import { addData, getData, deleteData } from "../../requests";
 
 type TData = {id: number,  title: string, text: string}[];
 
@@ -21,25 +22,8 @@ function NoteList() {
 
     const deleteNote = (ev: React.MouseEvent<HTMLElement>, id: number): void => {
         ev.stopPropagation();
-        setNotesArr(notesArr.filter(el => el.id !== id));
+        deleteData(id);
     }
-
-    const getNotes = useCallback(() => {
-        return new Promise<TData>((resolve => {
-            const getNotes = () => {
-                let notes: TData = [];
-                let keys = Object.keys(localStorage);
-                for(let key of keys) {
-                    notes.push(JSON.parse(localStorage.getItem(key) || '{}'))
-                }
-                notes.sort((a, b) => {
-                    return a.id - b.id;
-                })
-                return notes;
-            }
-            setTimeout(() => resolve(getNotes()), 100)
-        }))
-    }, []);
 
     const addNote = (): void => {
         setVisible(true);
@@ -48,9 +32,7 @@ function NoteList() {
 
     const saveNote = (title: string, text: string, id?: number): void => {
         if (id) {
-            let index = notesArr.findIndex(el => el.id === id);
-            notesArr.splice(index, 1, {id, title, text});
-            setNotesArr(notesArr);
+            addData(id, title, text);
             cancelCreate();
             setCurrentID(0);
             return;
@@ -59,7 +41,7 @@ function NoteList() {
             cancelCreate();
             return;
         }
-        setNotesArr((prevArrNotes) => [...prevArrNotes, {id: countId, title, text}])
+        addData(countId, title, text);
         cancelCreate();
         setCurrentID(0)
     }
@@ -78,27 +60,19 @@ function NoteList() {
 
     const searchNote = (string: string): void => {
         console.log('search');
-        if (string) return;
+        if (!string) setSearchingID([]);
         const searchNotes: TData = [];
         for (let item of notesArr) {
-            if((item.title.indexOf(string) === -1) && (item.text.indexOf(string) === -1)){
-            } else searchNotes.push(item)
+            if((item.title.indexOf(string) === -1) && (item.text.indexOf(string) === -1)){}
+            else searchNotes.push(item);
         }
         setSearchingID(searchNotes);
         console.log(searchNotes)
     }
 
-    // const showSearching = (arr: TData): JSX.Element[] => {
-    //     return arr.map((el) => {
-    //         return <Note key={el.id} id={el.id}
-    //                      title={el.title} text={el.text}
-    //                      onDel={deleteNote} onClick={changeNote}/>
-    //     });
-    // }
-
     useEffect(() => {
-        setSearchingID([]);
-    }, [getNotes, noteState]);
+        getData().then(data => data).then(data => setNotesArr(() => data));
+    }, [notesArr]);
 
     return (
         <>
@@ -107,7 +81,6 @@ function NoteList() {
             {visible && <CreateUpdateNote onCancel={cancelCreate} onSave={saveNote}
                                                      title={noteState.title} text={noteState.text} id={ currentID }/>
             }
-            {/*{console.log(showSearching(notesArr))}*/}
             <div className={ styles.notes }>
                 { searchingItem.length? searchingItem.map((el) => {
                     return <Note key={el.id} id={el.id}

@@ -5,3 +5,9 @@
     gap: 20px;
     height: 100vh;
 }
+
+.timer{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+ }
