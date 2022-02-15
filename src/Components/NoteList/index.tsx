@@ -20,8 +20,8 @@ function NoteList() {
     const [countId, setCountId] = useState<number>(0)
 
 
-    const deleteNote = (ev: React.MouseEvent<HTMLElement>, id: number): void => {
-        ev.stopPropagation();
+    const deleteNote = (id: number, ev?: React.MouseEvent<HTMLElement>): void => {
+        ev?.stopPropagation();
         deleteData(id);
     }
 
@@ -32,16 +32,22 @@ function NoteList() {
 
     const saveNote = (title: string, text: string, id?: number): void => {
         if (id) {
+            if (!title && !text) {
+                cancelCreate();
+                deleteNote(id);
+                return;
+            }
             addData(id, title, text);
             cancelCreate();
             setCurrentID(0);
             return;
         }
-        if (!(title && text)) {
+        if (!title && !text) {
             cancelCreate();
             return;
         }
         addData(countId, title, text);
+        cancelCreate();
         cancelCreate();
         setCurrentID(0)
     }

@@ -26,7 +26,7 @@ class Main extends Component<{}, IState>{
 
     componentDidUpdate(prevProps: Readonly<IState>, prevState: Readonly<IState>) {
         if (prevState.sec > 59){
-            this.setState({sec: 0, min: this.state.min + 1})
+            this.setState({sec: 0, min: prevState.min + 1})
         }
         if(prevState.min > 59) {
             this.setState({hour: prevState.hour + 1, min: 0})

@@ -7,7 +7,7 @@ interface IProps {
     id: number;
     title: string;
     text: string;
-    onDel: (ev: React.MouseEvent<HTMLElement>, id: number) => void;
+    onDel: (id: number, ev?: React.MouseEvent<HTMLElement>) => void;
     onClick: (ev: React.MouseEvent<HTMLDivElement>, id: number, title: string, text: string) => void;
 }
 
@@ -17,7 +17,7 @@ class Note extends Component<IProps> {
             <div className={ styles.wrapper } onClick={ (ev) => this.props.onClick(ev, this.props.id, this.props.title, this.props.text) } >
                 <div className={ styles.header }>
                     <h3>{this.props.title}</h3>
-                    <ButtonModel onClick={(e) => this.props.onDel(e, this.props.id) } action='delete' component={ <RiDeleteBin7Line /> } />
+                    <ButtonModel onClick={(e) => this.props.onDel(this.props.id, e) } action='delete' component={ <RiDeleteBin7Line /> } />
                 </div>
                 <p className={ styles.text }>
                     {this.props.text}

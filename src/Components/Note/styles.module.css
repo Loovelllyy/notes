@@ -8,7 +8,9 @@
     border: 2px solid #512DA8FF;
     border-radius: 10px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.25);
+    background: linear-gradient(20deg, rgba(255,255,255,0.25) 25%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.25) 75%);
+    background-size: 400%;
+    background-position: 100% 0;
 }
 
 
@@ -21,4 +23,13 @@
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
+}
+
+@keyframes overflow {
+    0% { background-position: 100% 0 }
+    100% { background-position: 0 100% }
+}
+
+.wrapper:hover{
+    animation: .5s ease-out overflow;
 }
