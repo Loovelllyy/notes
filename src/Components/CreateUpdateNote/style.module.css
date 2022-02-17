@@ -72,3 +72,20 @@
     right: 30px;
     top: 50px;
 }
+
+@media (max-width: 700px) {
+    .wrapper {
+        width: 240px;
+        padding: 20px;
+    }
+    .title {
+        width: 150px;
+        font-size: 1.3em;
+    }
+    .btnCancel {
+        top: 15px;
+    }
+    .text {
+        font-size: 1em;
+    }
+}

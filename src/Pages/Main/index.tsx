@@ -11,7 +11,7 @@ interface IState {
 
 class Main extends Component<{}, IState>{
     private timer: NodeJS.Timer | undefined;
-    constructor(props: any) {
+    constructor(props: {}) {
         super(props);
         this.state = {
             sec: 0,
