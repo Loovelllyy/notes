@@ -17,7 +17,7 @@ function NoteList() {
     const [visible, setVisible] = useState<boolean>(false);
     const [searchingItem, setSearchingID]  = useState<TData>([]);
 
-    const [countId, setCountId] = useState<number>(0)
+    const [countId, setCountId] = useState<number>(localStorage.length)
 
 
     const deleteNote = (id: number, ev?: React.MouseEvent<HTMLElement>): void => {
@@ -77,7 +77,8 @@ function NoteList() {
     }
 
     useEffect(() => {
-        getData().then(data => data).then(data => setNotesArr(() => data));
+        getData().then(data => data).then(data => setNotesArr(data));
+        // setCurrentID(localStorage.length)
     }, [notesArr]);
 
     return (
