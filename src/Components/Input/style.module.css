@@ -4,12 +4,22 @@
     align-items: center;
 }
 
-.input {
-    height: 20px;
-    padding-right: 20px;
+.input, .input:focus, .input:focus-visible {
+    height: 25px;
+    padding: 5px 25px 5px 5px;
+    border: 2px solid var(--textColor);
+    border-radius: 15px;
+    background: none;
+    /*border: none;*/
+    outline: none;
+    color: var(--textColor);
+}
+
+.input::placeholder {
+    color: var(--textColor);
 }
 
 .icon {
     position: relative;
-    right: 20px;
+    right: 25px;
 }

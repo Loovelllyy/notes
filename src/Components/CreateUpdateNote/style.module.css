@@ -15,7 +15,7 @@
     height: 55vh;
     width: 55vh;
     padding: 50px;
-    background-image: linear-gradient(to top, #c9b6f6 0%, #b8fad5 120%);
+    background-image: var(--bgAddNote);
     color: rgb(33 91 151);
     border-radius: 5%;
 }
@@ -32,15 +32,15 @@
     background: none;
     border: none;
     outline: none;
-    color: rgb(33 91 151);
+    color: var(--textColor);
 }
 
 .inputStyle::placeholder {
-    color: rgb(33 91 151);
+    color: var(--textColor);
 }
 
 .title:focus {
-    border-bottom: 2px solid rgb(33, 91, 151);
+    border-bottom: 2px solid var(--textColor);
 }
 
 .text {

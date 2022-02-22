@@ -65,7 +65,6 @@ function NoteList() {
     }
 
     const searchNote = (string: string): void => {
-        console.log('search');
         if (!string) setSearchingID([]);
         const searchNotes: TData = [];
         for (let item of notesArr) {
@@ -73,12 +72,10 @@ function NoteList() {
             else searchNotes.push(item);
         }
         setSearchingID(searchNotes);
-        console.log(searchNotes)
     }
 
     useEffect(() => {
         getData().then(data => data).then(data => setNotesArr(data));
-        // setCurrentID(localStorage.length)
     }, [notesArr]);
 
     return (

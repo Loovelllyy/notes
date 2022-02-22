@@ -1,0 +1,20 @@
+.wrapper{
+    margin: 10px;
+}
+
+.button {
+    width: max-content;
+    padding: 5px 10px;
+    margin-right: 5px;
+    display: inline-block;
+    color: var(--textColor);
+    background: rgba(255, 255, 255, 0.61);
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+.button:active{
+    transform: scale(0.9);
+}

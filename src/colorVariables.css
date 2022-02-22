@@ -1,7 +1,11 @@
 :root {
 
+    /*--textColor: rgb(203, 203, 203);*/
     --textColor: rgb(33 91 151);
     --bgPage: linear-gradient(246deg, #d5cffd 0%, #cbedfc 100%);
+    /*--bgPage: linear-gradient(246deg, #2a2952 0%, #126185 100%);*/
+    /*--bgAddNote: linear-gradient(to top, #4a4398 0%, #2c8c6a 120%);*/
+    --bgAddNote: linear-gradient(to top, #c9b6f6 0%, #b8fad5 120%);
     --bgScroll: linear-gradient(to top, #f0cffd 0%, #cbf3fc 100%);
 
     /* Background for Buttons */

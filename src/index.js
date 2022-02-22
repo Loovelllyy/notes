@@ -4,19 +4,28 @@ import reportWebVitals from './reportWebVitals';
 
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Links from './Pages/Links';
-import About from './Pages/About';
+import {AboutWithRedux} from './Pages/About';
 import './style.css'
 import Main from "./Pages/Main";
 
+import {Provider} from "react-redux";
+import {applyMiddleware, createStore} from "redux";
+import rootReducer from "./Redux/RootReducer";
+import thunk from "redux-thunk";
+
+export const store = createStore(rootReducer, applyMiddleware(thunk));
+
 ReactDOM.render((
     <React.StrictMode>
-        <BrowserRouter>
-            <Routes>
-                <Route path='/' element={ <Main /> } />
-                <Route path='/about' element={ <About /> } />
-                <Route path='/links' element={ <Links /> } />
-            </Routes>
-        </BrowserRouter>
+        <Provider store={store}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={ <Main /> } />
+                    <Route path='/about' element={ <AboutWithRedux /> } />
+                    <Route path='/links' element={ <Links /> } />
+                </Routes>
+            </BrowserRouter>
+        </Provider>
     </React.StrictMode>),
   document.getElementById('root'),
 );

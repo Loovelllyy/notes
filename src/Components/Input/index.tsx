@@ -11,7 +11,6 @@ const Input = ({ onSearch, addNote }: IProps) => {
     const [inputStr, setInputStr] = useState('');
 
     const handle = (ev: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(inputStr);
         setInputStr(ev.target.value);
         if (!ev.target.value) onSearch('');
     }

@@ -12,3 +12,7 @@ input, body {
     font-family: "Microsoft JhengHei UI", sans-serif;
     margin: 0;
 }
+
+a {
+    color: var(--textColor);
+}
