@@ -1,4 +1,4 @@
-import {ASYNC, DECREMENT, INCREMENT} from "./actions";
+import {ASYNC, DECREMENT, INCREMENT, GET_PHOTO} from "./actions";
 
 const inc = {
     type: INCREMENT
@@ -10,4 +10,9 @@ const async = {
     type: ASYNC
 }
 
-export { inc, dec, async }
+const getPhoto = {
+    type: GET_PHOTO,
+    payload: []
+}
+
+export { inc, dec, async, getPhoto }

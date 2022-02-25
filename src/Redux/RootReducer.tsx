@@ -1,13 +1,18 @@
-import {INCREMENT, DECREMENT, ASYNC} from './actions'
+import {ASYNC, DECREMENT, GET_PHOTO, INCREMENT} from './actions'
 
-const rootReducer = function (state = 0, action: { type: string; }) {
+const rootReducer = function (state: {num: number, photos: []} = {num: 0, photos: []}, action: { type: string; }) {
     switch (action.type) {
         case INCREMENT:
-            return state + 1;
+            state.num = state.num + 1;
+            return {num: state.num, photos: []};
         case DECREMENT:
-            return state - 1;
+            state.num = state.num - 1;
+            return {num: state.num, photos: []};
         case ASYNC:
-            return state * 2;
+            state.num = state.num * 2;
+            return {num: state.num, photos: []};
+        case GET_PHOTO:
+            return {num: state.num, photos: []};
         default:
             return state;
     }
