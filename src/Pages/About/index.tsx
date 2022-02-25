@@ -17,7 +17,8 @@ const mapDispatchToProps = (dispatch: any) => {
             dispatch(dec);
         },
         async: () => {
-            dispatch(async)
+            setTimeout(() => dispatch(async), 2000)
+
         }
     }
 }
@@ -26,10 +27,10 @@ interface IProps {
     val: number,
     inc: () => void,
     dec: () => void,
-    asyncF: () => void,
+    async: () => void,
 }
 
-const About = ({val, inc, dec, asyncF}: IProps) => {
+const About = ({val, inc, dec, async}: IProps) => {
 
     let [themeState, setThemeState] = useState(themes.light);
 
@@ -45,7 +46,7 @@ const About = ({val, inc, dec, asyncF}: IProps) => {
             <p>{ val }</p>
             <div className={style.button} onClick={ inc }>+</div>
             <div className={style.button} onClick={ dec }>-</div>
-            <div className={style.button} onClick={ asyncF }>async *2</div>
+            <div className={style.button} onClick={ async }>async *2</div>
             <MyContext.Provider value={ themeState }>
                 <MyElm className={ style.clicked } onClick={ onClck }>Click here</MyElm>
             </MyContext.Provider>
