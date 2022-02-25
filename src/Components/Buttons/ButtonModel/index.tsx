@@ -8,9 +8,9 @@ import React from "react";
 
 interface IProps {
     // action: keyof TMap;
-    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
     component: JSX.Element;
     action:  'add' | 'cancel' | 'delete' | 'save';
+    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
     style?: string | undefined;
 }
 

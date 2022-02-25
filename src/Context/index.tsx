@@ -1,13 +1,13 @@
 import {createContext} from "react";
 
-const themes = {
+export const themes: {light: {background: string, color: string}, dark: {background: string, color: string}} = {
     light: {
-        background: 'linear-gradient(246deg, #d5cffd 0%, #cbedfc 100%)',
-        color: 'rgb(33 91 151)',
+        background: 'linear-gradient(90deg, rgba(255,149,149,1) 0%, rgba(255,244,150,1) 100%)',
+        color: 'rgb(0,0,0)',
     },
     dark: {
-        background: 'linear-gradient(246deg, #2a2952 0%, #126185 100%)',
-        color: 'rgb(203, 203, 203)',
+        background: 'radial-gradient(circle, rgba(140,140,140,1) 7%, rgba(99,99,99,1) 100%)',
+        color: 'rgb(255, 255, 255)',
     }
 }
 

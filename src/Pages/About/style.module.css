@@ -18,3 +18,12 @@
 .button:active{
     transform: scale(0.9);
 }
+
+.clicked {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 2px solid black;
+}
