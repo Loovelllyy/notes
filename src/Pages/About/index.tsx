@@ -1,14 +1,21 @@
 import { connect } from "react-redux";
 import style from "./style.module.css";
-import {inc, dec, async, getPhoto} from "../../Redux/dispatches";
+import {inc, dec, async, thunkCreator} from "../../Redux/dispatches";
 import { MyContext, themes } from "../../Context";
 import MyElm from "../../Components/MyElm";
 import {useState} from "react";
 
-const mapStateToProps = (state: {num: number, photos: []}) => {
-    console.log(state)
-    return { num: state.num, photos: state.photos }
+const URL = 'https://jsonplaceholder.typicode.com/photos'
+
+const mapStateToProps = (state: {num: number, photo: string}) => {
+    return { num: state.num, photo: state.photo }
 }
+
+const getRandom = (min: number, max: number) => {
+    let rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
+}
+
 const mapDispatchToProps = (dispatch: any) => {
     return {
         inc: () => {
@@ -18,28 +25,18 @@ const mapDispatchToProps = (dispatch: any) => {
             dispatch(dec);
         },
         async: () => {
-            setTimeout(() => dispatch(async), 2000)
+            setTimeout( () => dispatch(async), 2000)
 
         },
         getPhoto: () => {
-            console.log('GET');
-            // dispatch(getPhoto);
-        }
+            let n = getRandom(1, 5000);
+            thunkCreator(URL)(dispatch, n);
+        },
+
     }
 }
 
-interface IProps {
-    val: { num: number, photos: [] },
-    inc: () => void,
-    dec: () => void,
-    async: () => void,
-    getPhoto: () => void,
-}
-
-// const About = ({num, inc, dec, async, getPhoto }: IProps) => {
-// const About = ({val, inc, dec, async, getPhoto }: IProps) => {
 const About = (props :any) => {
-
     let [themeState, setThemeState] = useState(themes.light);
 
     const onClck = () => {
@@ -48,7 +45,6 @@ const About = (props :any) => {
             setThemeState(themes.light)
         }, 2000)
     }
-    // console.log(props)
     return (
         <div className={ style.wrapper }>
             <p>{ props.num }</p>
@@ -56,6 +52,7 @@ const About = (props :any) => {
             <div className={style.button} onClick={ props.dec }>-</div>
             <div className={style.button} onClick={ props.async }>async *2</div>
             <div className={style.button} onClick={ props.getPhoto }>get photo</div>
+            <div style={{ background: `url(${ props.photo })` }} className={ style.photo } >{ props.photo } </div>
             <MyContext.Provider value={ themeState }>
                 <MyElm className={ style.clicked } onClick={ onClck }>Click here</MyElm>
             </MyContext.Provider>

@@ -9,10 +9,23 @@ const dec = {
 const async = {
     type: ASYNC
 }
-
-const getPhoto = {
-    type: GET_PHOTO,
-    payload: []
+const getPhoto = (url: string) => {
+    return {
+        type: GET_PHOTO,
+        payload: url,
+    }
 }
 
-export { inc, dec, async, getPhoto }
+type TData = {"albumId": number, 'id': number, 'title': string, 'url': string, "thumbnailUrl": string}[];
+
+const thunkCreator = (URL: string) => {
+      return async (dispatch: any, n: number) => {
+          let dataArr: TData = await fetch(URL).then(data => data.json());
+          let test = getPhoto(dataArr[n].url)
+          dispatch({
+              type: GET_PHOTO,
+              payload: test,
+          });
+    }
+}
+export { inc, dec, async, getPhoto, thunkCreator }

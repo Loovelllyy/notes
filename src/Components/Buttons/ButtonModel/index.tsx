@@ -1,11 +1,6 @@
 import styles from './styles.module.css'
 import React from "react";
 
-
-// const map = {add: { backgroundImage: 'var(--bgAddBtn)' }, cancel: {}...};
-// type TMap = typeof map;
-
-
 interface IProps {
     // action: keyof TMap;
     component: JSX.Element;
