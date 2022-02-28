@@ -9,7 +9,7 @@ const rootReducer = function (state = {num: 0, photo: ''}, action: { type: strin
         case ASYNC:
             return Object.assign({}, state, { num: state.num * 2 });
         case GET_PHOTO:
-            return Object.assign({}, state, { photo: action.payload.payload });
+            return Object.assign({}, state, { photo: action.payload });
         default:
             return state;
     }

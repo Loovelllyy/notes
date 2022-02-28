@@ -1,9 +1,10 @@
 import { connect } from "react-redux";
 import style from "./style.module.css";
-import {inc, dec, async, thunkCreator} from "../../Redux/dispatches";
+import {inc, dec, async} from "../../Redux/actions";
 import { MyContext, themes } from "../../Context";
 import MyElm from "../../Components/MyElm";
 import {useState} from "react";
+import {thunkCreator} from "../../Redux/dispatches";
 
 const URL = 'https://jsonplaceholder.typicode.com/photos'
 
