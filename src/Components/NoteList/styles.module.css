@@ -1,9 +1,11 @@
 .notes {
+    box-sizing: border-box;
+    padding: 3vw;
     max-height: 70%;
     overflow-y: scroll;
     display: flex;
     width: 100%;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 15px;
 }

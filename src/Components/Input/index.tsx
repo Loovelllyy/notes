@@ -6,24 +6,23 @@ import { RiAddCircleLine } from 'react-icons/ri';
 
 interface IProps { onSearch: (string: string) => void, addNote: () => void}
 
-const Input = ({ onSearch, addNote }: IProps) => {
+const Input = () => {
 
     const [inputStr, setInputStr] = useState('');
 
-    const handle = (ev: React.ChangeEvent<HTMLInputElement>) => {
-        setInputStr(ev.target.value);
-        if (!ev.target.value) onSearch('');
-    }
-
-    const onClick = () => {
-        onSearch(inputStr);
-    }
+    // const handle = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    //     setInputStr(ev.target.value);
+    //     if (!ev.target.value) onSearch('');
+    // }
+    //
+    // const onClick = () => {
+    //     onSearch(inputStr);
+    // }
 
     return (
             <div className={ styles.wrapper }>
-                <input placeholder='search...' className={ styles.input } onChange={ (ev) => handle(ev) } />
-                <ButtonSearch className={ styles.icon } onClick={ onClick }/>
-                <BtnModel onClick={ addNote } component={ <RiAddCircleLine/> } action='add'  />
+                <input placeholder='search...' className={ styles.input } />
+                <ButtonSearch className={ styles.icon } />
             </div>
         )
     }

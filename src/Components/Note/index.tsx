@@ -1,30 +1,37 @@
-import React, { Component } from "react";
+import React, {useEffect} from "react";
 import styles from './styles.module.css';
 import ButtonModel from "../Buttons/ButtonModel";
 import {RiDeleteBin7Line} from "react-icons/ri";
+import {deleteNote} from "../../requests/";
+import {useCustomContext} from "../../Context/Hooks/useCustomContext";
+import CreateUpdateNote from "../CreateUpdateNote";
 
 interface IProps {
     id: number;
     title: string;
     text: string;
-    onDel: (id: number, ev?: React.MouseEvent<HTMLElement>) => void;
-    onClick: (ev: React.MouseEvent<HTMLDivElement>, id: number, title: string, text: string) => void;
 }
 
-class Note extends Component<IProps> {
-    render() {
-        return (
-            <div className={ styles.wrapper } onClick={ (ev) => this.props.onClick(ev, this.props.id, this.props.title, this.props.text) } >
-                <div className={ styles.header }>
-                    <h3>{this.props.title}</h3>
-                    <ButtonModel onClick={(e) => this.props.onDel(this.props.id, e) } action='delete' component={ <RiDeleteBin7Line /> } />
-                </div>
-                <p className={ styles.text }>
-                    {this.props.text}
-                </p>
-            </div>
-        )
-    }
+const Note = ({ title, id, text }: IProps) => {
+
+  const { showModal, isShow } = useCustomContext();
+
+  useEffect(() => {
+    console.log("is show", isShow)
+  },[isShow])
+
+  return (
+    <div className={ styles.wrapper } onClick={ showModal! } >
+      { isShow && <CreateUpdateNote title={title} text={text} id={id} onSave={ ()=> {} } /> }
+      <div className={ styles.header }>
+        <h3>{title}</h3>
+        <ButtonModel onClick={ () => deleteNote(id) } action='delete' component={ <RiDeleteBin7Line /> } />
+      </div>
+      <p className={ styles.text }>
+        {text}
+      </p>
+    </div>
+  )
 }
 
 export default Note;

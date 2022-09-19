@@ -1,5 +1,6 @@
 import styles from './styles.module.css'
-import React from "react";
+import React, {useEffect} from "react";
+import {useCustomContext} from "../../../Context/Hooks/useCustomContext";
 
 interface IProps {
     // action: keyof TMap;
@@ -9,7 +10,11 @@ interface IProps {
     style?: string | undefined;
 }
 
+
+
 function ButtonModel({ onClick, component, action, style }: IProps) {
+
+
     let styleItem: {backgroundImage: string, width?: string};
     switch (action) {
         case 'add': styleItem = { backgroundImage: 'var(--bgAddBtn)' };

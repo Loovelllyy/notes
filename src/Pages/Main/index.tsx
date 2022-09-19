@@ -1,52 +1,30 @@
-import React, {Component} from "react";
+import React, {useEffect} from "react";
 import style from './style.module.css'
-import Navbar from "../../Components/Navbar";
 import NoteList from "../../Components/NoteList";
+import Input from "../../Components/Input";
+import {RiAddCircleLine} from "react-icons/ri";
+import BtnModel from "../../Components/Buttons/ButtonModel";
+import {CustomProvider} from "../../Context/CustomProvider";
+import {useCustomContext} from "../../Context/Hooks/useCustomContext";
+import CreateUpdateNote from "../../Components/CreateUpdateNote";
 
-interface IState {
-    sec: number,
-    min: number,
-    hour: number
-}
+const Main = () => {
+  const { isShow } = useCustomContext();
 
-class Main extends Component<{}, IState>{
-    private timer: NodeJS.Timer | undefined;
-    constructor(props: {}) {
-        super(props);
-        this.state = {
-            sec: 0,
-            min: 0,
-            hour: 0,
-        };
-    }
+  useEffect(() => {
+    console.log("RENDER", isShow)
+  }, [isShow])
 
-    componentDidMount() {
-        this.timer = setInterval(() => this.setState({sec: this.state.sec + 1}), 1000);
-    }
-
-    componentDidUpdate(prevProps: Readonly<IState>, prevState: Readonly<IState>) {
-        if (prevState.sec > 59){
-            this.setState({sec: 0, min: prevState.min + 1})
-        }
-        if(prevState.min > 59) {
-            this.setState({hour: prevState.hour + 1, min: 0})
-        }
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.timer as NodeJS.Timeout);
-    }
-
-    render() {
-        return (
-                <div className={ style.wrapper }>
-                    <div className={style.timer} >Time spent on page {this.state.hour}h {this.state.min}m {this.state.sec}s</div>
-                    <h1>YOUR NOTES</h1>
-                    <Navbar/>
-                    <NoteList />
-                </div>
-        )
-    }
+    return (
+        <div className={ style.wrapper }>
+          <h1>YOUR NOTES</h1>
+          <div className={ style.flex }>
+            <Input />
+            <BtnModel component={ <RiAddCircleLine/> } action='add'/>
+          </div>
+            <NoteList />
+        </div>
+    );
 }
 
 export default Main

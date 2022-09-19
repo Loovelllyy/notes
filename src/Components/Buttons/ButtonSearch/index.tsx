@@ -3,15 +3,14 @@ import { RiSearchLine } from 'react-icons/ri';
 
 interface IProps {
     className: string;
-    onClick: () => void
 }
 
-const Index = ({ className, onClick }: IProps) => {
-        return (
-            <div className={ className } onClick={ onClick } >
-                <RiSearchLine />
-            </div>
-        )
+const Index = ({ className }: IProps) => {
+  return (
+    <div className={ className } >
+      <RiSearchLine />
+    </div>
+  )
 }
 
 export default Index;
