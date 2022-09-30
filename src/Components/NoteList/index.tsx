@@ -22,7 +22,7 @@ function NoteList() {
                 if (d[0]) setNotesArr(d);
             });
         }
-    }, [getNotes, isShow]);
+    }, [isShow]);
 
     return (
       <div className={ styles.notes }>
