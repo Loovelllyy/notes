@@ -1,31 +1,27 @@
-import React, {useEffect} from "react";
+import React from "react";
 import styles from './styles.module.css';
 import ButtonModel from "../Buttons/ButtonModel";
 import {RiDeleteBin7Line} from "react-icons/ri";
-import {deleteNote} from "../../requests/";
 import {useCustomContext} from "../../Context/Hooks/useCustomContext";
-import CreateUpdateNote from "../CreateUpdateNote";
+import {INote} from "../../types";
 
 interface IProps {
     id: number;
     title: string;
     text: string;
+    onDel: (e: React.MouseEvent, id: INote["id"]) => void;
 }
 
-const Note = ({ title, id, text }: IProps) => {
+const Note = ({ title, id, text, onDel }: IProps) => {
 
-  const { showModal, isShow } = useCustomContext();
+  const { showModal } = useCustomContext();
 
-  useEffect(() => {
-    console.log("is show", isShow)
-  },[isShow])
 
   return (
-    <div className={ styles.wrapper } onClick={ showModal! } >
-      { isShow && <CreateUpdateNote title={title} text={text} id={id} onSave={ ()=> {} } /> }
+    <div className={ styles.wrapper } onClick={ () => showModal!({title, id, text}) } >
       <div className={ styles.header }>
         <h3>{title}</h3>
-        <ButtonModel onClick={ () => deleteNote(id) } action='delete' component={ <RiDeleteBin7Line /> } />
+        <ButtonModel onClick={ (e) => onDel(e, id) } action='delete' component={ <RiDeleteBin7Line /> } />
       </div>
       <p className={ styles.text }>
         {text}

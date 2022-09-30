@@ -1,18 +1,17 @@
 import styles from './styles.module.css'
-import React, {useEffect} from "react";
-import {useCustomContext} from "../../../Context/Hooks/useCustomContext";
+import React from "react";
 
 interface IProps {
-    // action: keyof TMap;
     component: JSX.Element;
     action:  'add' | 'cancel' | 'delete' | 'save';
     onClick?: (e: React.MouseEvent<HTMLElement>) => void;
     style?: string | undefined;
+    type?:  "button" | "submit" | "reset"
 }
 
 
 
-function ButtonModel({ onClick, component, action, style }: IProps) {
+function ButtonModel({ onClick, component, action, style, type, ...props }: IProps) {
 
 
     let styleItem: {backgroundImage: string, width?: string};
@@ -26,9 +25,9 @@ function ButtonModel({ onClick, component, action, style }: IProps) {
         case 'save': styleItem = { backgroundImage: 'var(--bgSaveBtn)', width: '200px' }
     }
     return (
-        <div onClick={ onClick } style={ styleItem } className={ `${styles.btnStyle} ${style}` }>
+        <button type={type} onClick={ onClick } style={ styleItem } className={ `${styles.btnStyle} ${style}` }>
             { component }
-        </div>
+        </button>
     )
 }
 

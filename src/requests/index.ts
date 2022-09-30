@@ -6,9 +6,13 @@ export const addNewNote = (data: Omit<INote, "id">) => {
 }
 
 export const deleteNote = (id: INote["id"]) => {
-	 return	$api.delete(`/notes/${id}`, ).catch(e => e);
+	 return	$api.delete(`/notes/${id}`).catch(e => e);
 }
 
 export const getNotes = () => {
 		return $api.get(`/notes`, ).then(d => d.data).catch(e => e);
+}
+
+export const updateNote = (data: INote) => {
+		return $api.put(`/notes/${data.id}`, JSON.stringify({title: data.title, text: data.text})).catch(e => e);
 }

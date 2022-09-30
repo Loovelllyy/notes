@@ -9,6 +9,7 @@
     box-sizing: border-box;
     transition: 0.5s;
     background-size: 200% auto;
+    border: none;
 }
 
 .btnStyle:hover {

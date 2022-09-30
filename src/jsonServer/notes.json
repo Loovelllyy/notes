@@ -1,13 +1,13 @@
 {
   "notes": [
     {
-      "title": "Hello! It`s your Notes1111",
-      "text": "You can create new notes or rewrite them in one touch",
+      "title": "Hello! It,s your first note!",
+      "text": "You can create a new notes or rewrite other in one touch",
       "id": 1
     },
     {
-      "title": "Hello! It`s your Notes2222",
-      "text": "You can create new notes or rewrite them in one touch",
+      "title": "test test test",
+      "text": "test test test test test test",
       "id": 2
     }
   ]

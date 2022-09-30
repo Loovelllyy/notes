@@ -4,7 +4,7 @@ export interface INote {
 		text: string
 }
 
-export interface IContextValue<Payload = unknown>  {
+export interface IContextValue<Payload = INote>  {
 		isShow: boolean
 		showModal?: (arg?: Payload) => void;
 		closeModal?: () => void;
