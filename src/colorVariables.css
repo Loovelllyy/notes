@@ -1,13 +1,13 @@
 :root {
     --textColor: rgb(37, 78, 121);
     --bgPage: linear-gradient(246deg, #d5cffd 0%, #cbedfc 100%);
-    --bgAddNote: linear-gradient(to top, #c9b6f6 0%, #b8fad5 120%);
-    --bgScroll: linear-gradient(to top, #f0cffd 0%, #cbf3fc 100%);
+    --bgAddNote: linear-gradient(to top, #cfc4e8 0%, #c9f2db 120%);
+    --bgScroll: #69ddc77d;
 
     /* Background for Buttons */
 
-    --bgAddBtn: linear-gradient(to right, #7276e3 0%, #85c6d2 51%, #7276e3  100%);
-    --bgCancelBtn: linear-gradient(to right, #d7d7d7 0%, rgb(231 124 153) 51%, #d7d7d7  100%);
-    --bgDelBtn: linear-gradient(to right, #837fde 0%, rgba(143, 35, 97, 0.67) 51%, #837fde  100%);
-    --bgSaveBtn: linear-gradient(to right, #29a98b 0%, rgba(96, 208, 141, 0.67) 51%,  #29a98b  100%);
+    --bgAddBtn: rgb(50 189 176);
+    --bgCancelBtn: rgba(255 0 0 / 51%);
+    --bgDelBtn: rgba(255 0 0 / 51%);
+    --bgSaveBtn: rgb(50 189 176);
 }

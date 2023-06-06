@@ -1,7 +1,7 @@
 import styles from './styles.module.css'
 import React from "react";
 
-interface IProps {
+interface IProps extends Omit<React.StyleHTMLAttributes<any>, 'style'> {
     component: JSX.Element;
     action:  'add' | 'cancel' | 'delete' | 'save';
     onClick?: (e: React.MouseEvent<HTMLElement>) => void;
@@ -9,20 +9,18 @@ interface IProps {
     type?:  "button" | "submit" | "reset"
 }
 
+function ButtonModel({ onClick, component, action, style, type }: IProps ) {
 
 
-function ButtonModel({ onClick, component, action, style, type, ...props }: IProps) {
-
-
-    let styleItem: {backgroundImage: string, width?: string};
+    let styleItem: {background?: string, backgroundImage?: string, width?: string};
     switch (action) {
-        case 'add': styleItem = { backgroundImage: 'var(--bgAddBtn)' };
+        case 'add': styleItem = { background: 'var(--bgAddBtn)' };
             break;
-        case 'cancel': styleItem = { backgroundImage: 'var(--bgCancelBtn)', width: '60px' };
+        case 'cancel': styleItem = { background: 'var(--bgCancelBtn)' };
             break;
-        case 'delete': styleItem = { backgroundImage: 'var(--bgDelBtn)', width: '60px' }
+        case 'delete': styleItem = { background: 'var(--bgDelBtn)' }
             break;
-        case 'save': styleItem = { backgroundImage: 'var(--bgSaveBtn)', width: '200px' }
+        case 'save': styleItem = { background: 'var(--bgSaveBtn)', width: '200px' }
     }
     return (
         <button type={type} onClick={ onClick } style={ styleItem } className={ `${styles.btnStyle} ${style}` }>

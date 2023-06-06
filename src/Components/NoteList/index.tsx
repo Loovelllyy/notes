@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./styles.module.css";
+import Masonry from '@mui/lab/Masonry';
 import Note from '../Note'
 import {deleteNote, getNotes} from "../../requests/"
 import {INote} from "../../types";
@@ -24,17 +25,20 @@ function NoteList() {
         }
     }, [isShow]);
 
+
     return (
       <div className={ styles.notes }>
-          { notesArr.map(note => {
-              return (
-                <Note
-                  onDel={ handleDelete }
-                  key={note.id} id={note.id}
-                  title={note.title} text={note.text}
-                />
-              )
-          })}
+          <Masonry columns={{ xs: 1, sm: 2, md: 3, lg: 4 }} spacing={4}   >
+              { notesArr.map(note => {
+                  return (
+                    <Note
+                      onDel={ handleDelete }
+                      key={note.id} id={note.id}
+                      title={note.title} text={note.text}
+                    />
+                  )
+              })}
+          </Masonry>
       </div>
 
     )

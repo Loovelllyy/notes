@@ -1,19 +1,22 @@
 .btnStyle {
     color: white;
-    padding: 5px 20px;
-    border-radius: 10%;
+    border-radius: var(--standart-br);
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 30px;
+    height: 40px;
+    width: 40px;
+    font-weight: 400;
+    font-size: 1rem;
     box-sizing: border-box;
-    transition: 0.5s;
-    background-size: 200% auto;
+    transition: 0.3s;
     border: none;
 }
 
 .btnStyle:hover {
-    background-position: right center;
-    color: #fff;
-    text-decoration: none;
+    box-shadow: 0 0 20px 1px rgb(212 255 206);
+}
+
+.btnStyle:active {
+    transform: scale(.9);
 }

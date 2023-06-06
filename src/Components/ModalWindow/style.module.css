@@ -21,7 +21,7 @@
     padding: 50px;
     background-image: var(--bgAddNote);
     color: rgb(33 91 151);
-    border-radius: 5%;
+    border-radius: var(--standart-br);
 }
 
 .wrapper > * :not(:last-child) {

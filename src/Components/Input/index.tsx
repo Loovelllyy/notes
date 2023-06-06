@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from './style.module.css';
 import ButtonSearch from "../Buttons/ButtonSearch";
-import BtnModel from "../Buttons/ButtonModel";
-import { RiAddCircleLine } from 'react-icons/ri';
 
-interface IProps { onSearch: (string: string) => void, addNote: () => void}
+// interface IProps { onSearch: (string: string) => void, addNote: () => void}
 
 const Input = () => {
 
-    const [inputStr, setInputStr] = useState('');
+    // const [inputStr, setInputStr] = useState('');
 
     // const handle = (ev: React.ChangeEvent<HTMLInputElement>) => {
     //     setInputStr(ev.target.value);

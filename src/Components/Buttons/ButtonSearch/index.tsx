@@ -1,5 +1,5 @@
 import React from "react";
-import { RiSearchLine } from 'react-icons/ri';
+import { BiSearchAlt2 } from "react-icons/bi";
 
 interface IProps {
     className: string;
@@ -8,7 +8,7 @@ interface IProps {
 const Index = ({ className }: IProps) => {
   return (
     <div className={ className } >
-      <RiSearchLine />
+      <BiSearchAlt2 size={ 25 } />
     </div>
   )
 }

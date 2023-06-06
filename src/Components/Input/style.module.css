@@ -5,10 +5,11 @@
 }
 
 .input, .input:focus, .input:focus-visible {
-    height: 25px;
+    height: 30px;
+    width: 300px;
     padding: 5px 25px 5px 5px;
-    border: 2px solid var(--textColor);
-    border-radius: 15px;
+    border: 1px solid var(--textColor);
+    border-radius: var(--standart-br);
     background: none;
     /*border: none;*/
     outline: none;
@@ -20,6 +21,7 @@
 }
 
 .icon {
+    height: 25px;
     position: relative;
-    right: 25px;
+    right: 30px;
 }
