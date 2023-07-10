@@ -54,36 +54,38 @@ export default {
 }
 
 
-const Template: ComponentStory<typeof CreateUpdateNote> = ({isShow, ...args}) => {
+// @ts-ignore
+const Template: ComponentStory<typeof CreateUpdateNote> = ({...args}) => {
 
-		const [show, setShow] = useState(isShow);
+		// const [show, setShow] = useState(isShow);
 		const [noteData, setNoteData] = useState<INote>({} as INote);
 
+		// isShow: show,
 		const contextValue = useMemo((): IContextValue => ({
-				isShow: show,
 				payload: noteData,
 				showModal: (payload) => {
 						if(payload) setNoteData(payload);
-						setShow(true)
+						// setShow(true)
 				},
 				closeModal: () => {
 						setTimeout(() => {
-								setShow(false);
-								isShow = false;
+								// setShow(false);
+								// isShow = false;
 								setNoteData({} as INote);
 						}, 0)
 				},
 
-		}), [show, setShow, noteData])
+		}), [noteData])
+		// }), [show, setShow, noteData])
 
 		return (
 				<CustomProvider>
 						<Context.Provider value={ contextValue }>
 								<ButtonModel data-testid={'click'} component={<HiViewGridAdd size={20} />} action={"add"} onClick={() => {
 										console.log(contextValue.isShow);
-										setShow(!contextValue.isShow)
+										// setShow(!contextValue.isShow)
 								}}></ButtonModel>
-								<CreateUpdateNote {...args} isShow={contextValue.isShow} />
+								<CreateUpdateNote {...args} />
 						</Context.Provider>
 				</CustomProvider>
 		)

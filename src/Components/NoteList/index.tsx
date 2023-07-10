@@ -35,6 +35,8 @@ function NoteList() {
                       onDel={ handleDelete }
                       key={note.id} id={note.id}
                       title={note.title} text={note.text}
+                      createDate={note.createDate}
+                      lastUpdateDate={note.lastUpdateDate}
                     />
                   )
               })}

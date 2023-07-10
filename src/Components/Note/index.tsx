@@ -9,13 +9,13 @@ interface IProps extends INote {
     onDel: (e: React.MouseEvent, id: INote["id"]) => void;
 }
 
-const Note = ({ title, id, text, onDel }: IProps) => {
+const Note = ({ title, id, text, onDel, createDate, lastUpdateDate }: IProps) => {
 
   const { showModal } = useCustomContext();
 
 
   return (
-    <div className={ styles.wrapper } onClick={ () => showModal!({title, id, text}) } >
+    <div className={ styles.wrapper } onClick={ () => showModal!({title, id, text, lastUpdateDate, createDate}) } >
       <div className={ styles.header }>
         <h3>{title}</h3>
         <div style={{width: '40px', height: '40px'}}>

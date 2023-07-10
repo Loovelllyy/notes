@@ -15,10 +15,13 @@ const Main = () => {
           <h1>YOUR NOTES</h1>
           <div className={ style.flex }>
             <Input />
-            <BtnModel component={ <HiViewGridAdd size={20} /> } action='add' onClick={ () => showModal!({title: "", text: "", id: 0}) } />
+            <BtnModel
+              component={ <HiViewGridAdd size={20} /> } action='add'
+              onClick={ () => showModal!({title: "", text: "", id: 0, lastUpdateDate: '', createDate: ''}) }
+            />
           </div>
             <NoteList />
-          <CreateUpdateNote isShow={isShow} />
+          { isShow && <CreateUpdateNote />}
         </div>
     );
 }

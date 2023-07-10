@@ -14,5 +14,5 @@ export const getNotes = () => {
 }
 
 export const updateNote = (data: INote) => {
-		return $api.put(`/notes/${data.id}`, JSON.stringify({title: data.title, text: data.text})).catch(e => e);
+		return $api.put(`/notes/${data.id}`, JSON.stringify(data)).catch(e => e);
 }

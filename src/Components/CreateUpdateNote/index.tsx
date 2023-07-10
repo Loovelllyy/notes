@@ -8,19 +8,26 @@ import ModalWindow from "../ModalWindow";
 import {useCustomContext} from "../../Context/Hooks/useCustomContext";
 import {addNewNote, updateNote} from "../../requests";
 import {INote} from "../../types";
+import {format, formatDistance} from "date-fns";
 
 interface IForm extends INote {}
 
-function CreateUpdateNote({isShow}: {isShow: boolean}) {
+function CreateUpdateNote() {
   const { register, handleSubmit } = useForm<IForm>();
   const { closeModal, payload } = useCustomContext();
 
+
   const savedNote = (data: INote) => {
-    if (payload?.id ) updateNote({id: payload!.id, text: data.text, title: data.title}).then(() => closeModal!());
-    else addNewNote({title: data.title, text: data.text}).then(() => closeModal!());
+    if (payload?.id ) updateNote({id: payload.id, text: data.text, title: data.title, lastUpdateDate: Date.now(), createDate: payload.createDate}).then(() => closeModal!());
+    else addNewNote({title: data.title, text: data.text, lastUpdateDate: Date.now(), createDate: Date.now()}).then(() => closeModal!());
   };
 
-  if (isShow) return(
+  const getFormatDate = (date: Date | number | '') => {
+    if (!date) return '';
+    return format(date, 'dd.MM.Y');
+  }
+
+  return(
      <ModalWindow>
       <form onSubmit = { handleSubmit(savedNote) }>
         <input
@@ -35,11 +42,20 @@ function CreateUpdateNote({isShow}: {isShow: boolean}) {
           />
         </div>
         <ButtonModel style={ style.btnCancel } onClick={ closeModal } action='cancel' component={ <IoCloseSharp size={ 30 } /> } type="reset"  />
+        { (payload.id || '') &&
+          <p className={style.dateCreate}>
+            created: {getFormatDate(payload.createDate)}
+          </p>
+        }
+        { (payload.id || '') &&
+          <p className={style.dateUpdate}>
+            updated: {getFormatDate(payload.lastUpdateDate)} ({formatDistance(payload.lastUpdateDate || 0, Date.now())} ago)
+          </p>
+        }
         <ButtonModel style={ style.btnSave } component={ <div>Save</div> } action='save' type="submit" />
       </form>
     </ModalWindow>
   )
-  return null;
 }
 
 export default CreateUpdateNote;
